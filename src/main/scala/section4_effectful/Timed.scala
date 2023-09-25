@@ -26,5 +26,15 @@ object Timed extends IOApp.Simple {
       .compile
       .drain
 
+    //Debounce
+    val resizeEvents = Stream.iterate((0,0)) { case (w, h) => (w + 1, h + 1)}.covary[IO]
+    resizeEvents
+      .debounce(200.millis)
+      .evalTap { case (h, w) => IO.println(s"Resizing window to height $h and width $w") }
+      .interruptAfter(3.seconds)
+      .compile
+      .toList
+      .flatMap(IO.println)
+
   }
 }
