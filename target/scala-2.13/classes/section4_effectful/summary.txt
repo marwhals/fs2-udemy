@@ -1,0 +1,8 @@
+- Streams do not only produce values but also effects
+- There are multiple ways to create a stream from an effect type
+- There are many effect-aware ways to combine streams
+- Compiling a stream gives us an interface to go back to out effect type
+- Streams are MonadErrors
+- We can handle resources safely
+- We can interrupt streams, force them to emit every certain period of times, timeout and more.
+- Built-in retry capability!
